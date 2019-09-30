@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_09_30_095943) do
   create_table "tasks_users", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "task_id", null: false
+    t.index ["task_id", "user_id"], name: "index_tasks_users_on_task_id_and_user_id", unique: true
+    t.index ["user_id", "task_id"], name: "index_tasks_users_on_user_id_and_task_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
