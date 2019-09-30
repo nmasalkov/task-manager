@@ -2,7 +2,7 @@
 
 PASSWORD = 123456
 
-emails = %w[nikita@mail.com bill@mail.com josh@mail.com]
+emails = %w[nikita@mail.com bill@mail.com josh@mail.com kate@mail.com karen@mail.com]
 
 tasks = ['refactoring', 'make a feature', 'rest a while', 'drink coffee', 'attend meeting', 'have a break']
 
@@ -13,7 +13,8 @@ attachment_names = %w[ricardo.jpg doc.txt doc.pdf]
 emails.each do |mail|
   User.create(
     email: mail,
-    password: PASSWORD
+    password: PASSWORD,
+    role: User.roles.values.sample
   )
 end
 
