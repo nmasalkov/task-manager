@@ -1,58 +1,80 @@
-<div class="p-t-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        Waiting list
-      </div>
-      <div class="col-md-4">
-        In progress
-      </div>
-      <div class="col-md-4">
-        Done
-      </div>
+<div class="container">
+  <div class="row pb-3">
+    <div class="col-md-4">
+      Waiting list:
+    </div>
+    <div class="col-md-4">
+      In progress:
+    </div>
+    <div class="col-md-4">
+      Done:
     </div>
   </div>
 
-  <div class="container-fluid p-t-3">
-    <ul class="list-group">
-      <li class="list-group-item">
-         Task "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin." assigned to @Petya
-      </li>
-      <li class="list-group-item">
-        Task "He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections." assigned to @Vasya
-      </li>
-      <li class="list-group-item">
-        Task "The bedding was hardly able to cover it and seemed ready to slide off any moment." assigned to @Katya
-      </li>
-    </ul>
-  </div>
-
-  <div class="container p-t-3">
-    <div class="row">
-      <div class="col-md-6">
-        Users:
-      </div>
-      <div class="col-md-6">
-        Admins:
-      </div>
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="list-group">
+        <% tasks_waiting_list.each do |task_waiting_list|  %>
+          <li class="list-group-item"><%= task_waiting_list.title.capitalize %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-       <ul class="list-group text-center">
-         <li class="list-group-item"> Bill</li>
-         <li class="list-group-item"> Josh</li>
-         <li class="list-group-item"> Bill</li>
-         <li class="list-group-item"> Josh</li>
-       </ul>
-      </div>
-      <div class="col-md-6">
-        <ul class="list-group text-center">
-          <li class="list-group-item"> Bill</li>
-          <li class="list-group-item"> Josh</li>
-          <li class="list-group-item"> Bill</li>
-          <li class="list-group-item"> Josh</li>
-        </ul>
-      </div>
+    <div class="col-md-4">
+      <ul class="list-group">
+        <% tasks_in_progress.each do |task_in_progress|  %>
+          <li class="list-group-item"><%= task_in_progress.title.capitalize %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <ul class="list-group">
+        <% tasks_done.each do |task_done|  %>
+          <li class="list-group-item"><%= task_done.title.capitalize %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid p-t-3">
+  <ul class="list-group">
+    <% tasks.each do |task| %>
+      <li class="list-group-item">
+        Task <a href="#"><%= task.title %></a>
+        assigned to:
+        <% task.users.each do |user| %>
+          <a href="#"><%= user.username %></a>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="container p-t-3">
+  <div class="row">
+    <div class="col-md-6">
+      Users:
+    </div>
+    <div class="col-md-6">
+      Admins:
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+     <ul class="list-group text-center">
+       <li class="list-group-item"> Bill</li>
+       <li class="list-group-item"> Josh</li>
+       <li class="list-group-item"> Bill</li>
+       <li class="list-group-item"> Josh</li>
+     </ul>
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group text-center">
+        <li class="list-group-item"> Bill</li>
+        <li class="list-group-item"> Josh</li>
+        <li class="list-group-item"> Bill</li>
+        <li class="list-group-item"> Josh</li>
+      </ul>
     </div>
   </div>
 </div>

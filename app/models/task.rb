@@ -12,6 +12,8 @@ class Task < ApplicationRecord
     done: 2
   }
 
+  private
+
   def status_valid?
     Task.statuses.include?(status)
   end

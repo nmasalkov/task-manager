@@ -4,7 +4,7 @@ PASSWORD = 123456
 
 emails = %w[nikita@mail.com bill@mail.com josh@mail.com]
 
-tasks = ['refactoring', 'make a feature', 'rest a while']
+tasks = ['refactoring', 'make a feature', 'rest a while', 'drink coffee', 'attend meeting', 'have a break']
 
 comments = ['Hard task', 'An easy task', 'Good one..', 'Nicely done']
 
@@ -32,6 +32,8 @@ end
 
 Task.all.each do |task|
   task.users << User.all.sample(2)
+  task.status = Task.statuses.values.sample
+  task.save
 end
 
 attachment_names.each do |attachment|
@@ -39,10 +41,6 @@ attachment_names.each do |attachment|
     name: attachment,
     user_id: User.all.sample
   )
-end
-
-Task.all.each do |task|
-  task.users << User.all.sample(2)
 end
 
 Attachment.all.each do |attachment|
