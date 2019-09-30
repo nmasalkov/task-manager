@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_and_belongs_to_many :tasks
   has_many :comments
+  has_many :attachments
 end
