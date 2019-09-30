@@ -62,17 +62,17 @@
   <div class="row">
     <div class="col-md-6">
      <ul class="list-group text-center">
-       <% regular_users.each do |regular_user|%>
+       <% @users.each do |regular_user|%>
         <li class="list-group-item"> <%= regular_user.username %></li>
        <% end %>
      </ul>
     </div>
     <div class="col-md-6">
-      <ul class="list-group text-center">
-        <% admin_users.each do |admin_user|%>
-          <li class="list-group-item"> <%= admin_user.username %></li>
-        <% end %>
-      </ul>
+<!--        <ul class="list-group text-center">-->
+          <%# admin_users.each do |admin_user|%>
+<!--            <li class="list-group-item"> <%#= admin_user.username %></li>-->
+          <%# end %>
+        </ul>
     </div>
   </div>
 </div>
