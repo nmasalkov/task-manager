@@ -1,7 +1,50 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+PASSWORD = 123456
+
+emails = %w[nikita@mail.com bill@mail.com josh@mail.com]
+
+tasks = ['refactoring', 'make a feature', 'rest a while']
+
+comments = ['Hard task', 'An easy task', 'Good one..', 'Nicely done']
+
+attachment_names = %w[ricardo.jpg doc.txt doc.pdf]
+
+emails.each do |mail|
+  User.create(
+    email: mail,
+    password: PASSWORD
+  )
+end
+
+comments.each do |comment|
+  Comment.find_or_create_by(
+    body: comment,
+    user_id: User.all.ids.sample
+  )
+end
+
+tasks.each do |task|
+  Task.find_or_create_by(
+    title: task
+  )
+end
+
+Task.all.each do |task|
+  task.users << User.all.sample(2)
+end
+
+attachment_names.each do |attachment|
+  Attachment.find_or_create_by(
+    name: attachment,
+    user_id: User.all.sample
+  )
+end
+
+Task.all.each do |task|
+  task.users << User.all.sample(2)
+end
+
+Attachment.all.each do |attachment|
+  Task.all.sample.attachments << attachment
+end
