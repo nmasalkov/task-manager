@@ -8,10 +8,10 @@ class UserPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user&.admin?
+      if user.present? && user.admin?
         scope.all
       else
-        scope.user
+        scope.where(role: 'user')
       end
     end
   end
