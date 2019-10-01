@@ -52,28 +52,36 @@
 
 <div class="container pt-5">
   <div class="row">
+  <% unless regular_users.empty? %>
     <div class="col-md-6">
       Users:
     </div>
+  <% end %>
+  <% unless admin_users.empty? %>
     <div class="col-md-6">
       Admins:
     </div>
+  <% end %>
   </div>
   <div class="row">
-    <div class="col-md-6">
-     <ul class="list-group text-center">
-       <% @users.each do |regular_user|%>
-        <li class="list-group-item"> <%= regular_user.username %></li>
-       <% end %>
-     </ul>
-    </div>
-    <div class="col-md-6">
-<!--        <ul class="list-group text-center">-->
-          <%# admin_users.each do |admin_user|%>
-<!--            <li class="list-group-item"> <%#= admin_user.username %></li>-->
-          <%# end %>
-        </ul>
-    </div>
+    <% unless regular_users.empty? %>
+      <div class="col-md-6">
+       <ul class="list-group text-center">
+         <% regular_users.each do |regular_user|%>
+          <li class="list-group-item"> <%= regular_user.username %></li>
+         <% end %>
+       </ul>
+      </div>
+    <% end %>
+    <% unless admin_users.empty? %>
+      <div class="col-md-6">
+          <ul class="list-group text-center">
+            <% admin_users.each do |admin_user|%>
+              <li class="list-group-item"> <%= admin_user.username %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
   </div>
 </div>
 <!--Just to be able to scroll as to check if navbar is fixed-->
