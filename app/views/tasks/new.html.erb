@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center display-4 pb-5">
+     Create task
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form_with model: @task do |form| %>
+          <%= form.label :title, class: 'control-label' %>
+          <%= form.text_field :title, class:'form-text', required: true  %>
+          <%= form.label :description, class: 'control-label' %>
+          <%= form.text_field :description, class:'form-text ' %>
+          <br>
+          <%= form.label :users, class: 'control-label' %>
+          <%= form.select :user_ids, options_from_collection_for_select(@users, :id, :username), {}, { class: 'form-control', multiple: true, size: @users.length} %>
+          <br>
+          <%= form.label :status, class: 'control-label' %>
+          <%= form.select :status, options_for_select(@statuses.map{ |key, value| [key, key] }), {}, class: 'form-control' %>
+          <br>
+          <%= form.label :range, class: 'control-label' %>
+          <br>
+          <%= form.submit "Create", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

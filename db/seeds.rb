@@ -6,7 +6,7 @@ emails = %w[nikita@mail.com bill@mail.com josh@mail.com kate@mail.com karen@mail
 
 tasks = ['refactoring', 'make a feature', 'rest a while', 'drink coffee', 'attend meeting', 'have a break']
 
-comments = ['Hard task', 'An easy task', 'Good one..', 'Nicely done']
+comments = ['Hard tasks', 'An easy tasks', 'Good one..', 'Nicely done']
 
 attachment_names = %w[ricardo.jpg doc.txt doc.pdf]
 
@@ -47,3 +47,7 @@ end
 Attachment.all.each do |attachment|
   Task.all.sample.attachments << attachment
 end
+
+admin = User.find(1)
+admin.admin!
+admin.save
