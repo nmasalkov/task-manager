@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+
+  before_action :user_presence, except: [:show]
+
   def new
     task = Task.new
     users = User.all
@@ -50,5 +53,9 @@ class TasksController < ApplicationController
 
   def find_task
     Task.find(params[:id])
+  end
+
+  def user_presence
+    redirect_to root_path unless current_user.present?
   end
 end
