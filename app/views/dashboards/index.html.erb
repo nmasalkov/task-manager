@@ -10,7 +10,6 @@
       Done:
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-4">
       <ul class="list-group">
@@ -52,6 +51,12 @@
         assigned to:
         <% task.users.each do |user| %>
           <%= link_to user.username, '#' %>
+        <% end %>
+        <% unless task.start_date.nil? %>
+          Start time: <span class="text-success"> <%=task.normal_start_date %> </span>
+        <% end %>
+        <% unless task.end_date.nil? %>
+          End time: <span class="text-success"><%= task.normal_end_date %> </span>
         <% end %>
       </li>
     <% end %>

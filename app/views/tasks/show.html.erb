@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center display-4 pb-5">
+      Task: <span class="text-success"> <%= task.title %></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-md-12 text-center display-2" >
+      <%= link_to "Edit this task", edit_task_path(task.id), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+
+<div class="container p-t-3">
+  <div class="row">
+    <div class="col-md-2">
+      Title:
+    </div>
+    <div class="col-md-6">
+      <%= task.title %>
+    </div>
+  </div>
+  <div class="row p-t-3">
+    <div class="col-md-2">
+      Description:
+    </div>
+    <div class="col-md-6">
+      <%= task.description %>
+    </div>
+  </div>
+  <div class="row p-t-3">
+    <div class="col-md-2">
+      Status:
+    </div>
+    <div class="col-md-6">
+      <%= task.status%>
+    </div>
+  </div>
+  <div class="row p-t-3">
+    <div class="col-md-2">
+      Users assigned:
+    </div>
+    <div class="col-md-6">
+      <% users.each do |user|  %>
+        <span class="pr-2"> <a href="#"><%= user.username %></a> </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="row p-t-3">
+    <div class="col-md-2">
+      Start date
+    </div>
+    <div class="col-md-6">
+      <%= task.normal_start_date %>
+    </div>
+  </div>
+  <div class="row p-t-3">
+    <div class="col-md-2">
+      Finish date
+    </div>
+    <div class="col-md-6">
+      <%= task.normal_end_date %>
+    </div>
+  </div>
+</div>

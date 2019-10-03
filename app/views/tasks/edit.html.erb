@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center display-4 pb-5">
+      Edit task <span class="text-success"> <%= task.title %></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form_with model: @task_class, url: task_path(task.id), method: "put" do |form| %>
+          <%= form.label :title, class: 'control-label' %>
+          <%= form.text_field :title, class:'form-text', required: true, value: task.title  %> <br>
+          <%= form.label :description, class: 'control-label' %>
+          <%= form.text_field :description, class:'form-text w-50 p-5', value: task.description %>
+          <br>
+          <%= form.label :users, class: 'control-label' %>
+          <%= form.select :user_ids, options_from_collection_for_select(@users, :id, :username, task.user_ids), {}, { class: 'form-control', multiple: true, size: @users.length } %>
+          <br>
+          <%= form.label :status, class: 'control-label' %>
+          <%= form.select :status, options_for_select(@statuses.map{ |key, value| [key, key] }, task.status), {}, class: 'form-control' %>
+          <br>
+          <%= form.label :start_date, default: task.start_date, class: 'control-label' %>
+          <%= form.datetime_select :start_date, class: 'form-control' %>
+          <br>
+          <%= form.label :end_date, class: 'control-label' %>
+          <%= form.datetime_select :end_date, default: task.end_date, class: 'form-control' %>
+          <br>
+          <%= form.submit "Edit", class: "btn btn-primary" %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
