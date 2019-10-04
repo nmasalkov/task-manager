@@ -1,27 +1,15 @@
 {
-<<<<<<< HEAD
-  "application.js": "/packs/js/application-7675531d050d075d82db.js",
-  "application.js.map": "/packs/js/application-7675531d050d075d82db.js.map",
-=======
-  "application.js": "/packs/js/application-cde97c3a452a09866f10.js",
-  "application.js.map": "/packs/js/application-cde97c3a452a09866f10.js.map",
->>>>>>> finish task create, show and edit features
+  "application.js": "/packs/js/application-e31717d378bfff3a396a.js",
+  "application.js.map": "/packs/js/application-e31717d378bfff3a396a.js.map",
   "bootstrap_custom.js": "/packs/js/bootstrap_custom-df00500e8097fb00648f.js",
   "bootstrap_custom.js.map": "/packs/js/bootstrap_custom-df00500e8097fb00648f.js.map",
   "entrypoints": {
     "application": {
       "js": [
-<<<<<<< HEAD
-        "/packs/js/application-7675531d050d075d82db.js"
+        "/packs/js/application-e31717d378bfff3a396a.js"
       ],
       "js.map": [
-        "/packs/js/application-7675531d050d075d82db.js.map"
-=======
-        "/packs/js/application-cde97c3a452a09866f10.js"
-      ],
-      "js.map": [
-        "/packs/js/application-cde97c3a452a09866f10.js.map"
->>>>>>> finish task create, show and edit features
+        "/packs/js/application-e31717d378bfff3a396a.js.map"
       ]
     },
     "bootstrap_custom": {

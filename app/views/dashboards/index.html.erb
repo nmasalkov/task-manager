@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<div class="container p-t-3 text-center">
+<div class="container pt-3 text-center">
   <div class="row">
     <div class="col-md-6">
       <%= link_to 'Create new task', new_task_path, class: "btn btn-primary"%>
@@ -43,19 +43,19 @@
   </div>
 </div>
 
-<div class="container-fluid p-t-3">
+<div class="container-fluid pt-3">
   <ul class="list-group">
     <% tasks.each do |task| %>
       <li class="list-group-item">
-        Task <%= link_to task.title, '#' %>
+        Task <%= link_to task.title, task_path(task.id) %>
         assigned to:
         <% task.users.each do |user| %>
           <%= link_to user.username, '#' %>
         <% end %>
-        <% unless task.start_date.nil? %>
+        <% if task.start_date.present? %>
           Start time: <span class="text-success"> <%=task.normal_start_date %> </span>
         <% end %>
-        <% unless task.end_date.nil? %>
+        <% if task.end_date.present? %>
           End time: <span class="text-success"><%= task.normal_end_date %> </span>
         <% end %>
       </li>
