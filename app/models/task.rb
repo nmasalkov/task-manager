@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_many :assignments
+  has_many :users, through: :assignments
   has_many :comments
   has_many :attachments
   validates :title, presence: true
@@ -10,6 +11,29 @@ class Task < ApplicationRecord
     in_progress: 1,
     done: 2
   }
+
+  def add_creator(user)
+    users << user
+    assignment = Assignment.find_by(user_id: user.id, task_id: id)
+    assignment.creator = true
+    assignment.assigned = false
+    assignment.save
+  end
+
+  def add_assignee(user)
+    users << user
+    assignment = Assignment.find_by(user_id: user.id, task_id: id)
+    assignment.assigned = true
+    assignment.save
+  end
+
+  def creator
+    User.find(assignments.created.user_id)
+  end
+
+  def assigned_users
+    User.find(assignments.assigned.map(&:user_id))
+  end
 
   def normal_start_date
     normalize_date(start_date)
