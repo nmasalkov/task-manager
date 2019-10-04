@@ -4,6 +4,7 @@
       Task: <span class="text-success"> <%= task.title %></span>
     </div>
   </div>
+
   <% if policy(task).edit? %>
     <div class="row">
       <div class=" col-md-12 text-center display-2" >
@@ -47,6 +48,14 @@
       </div>
     </div>
   <div class="row pt-3">
+    <div class="col-md-2">
+      Task creator:
+    </div>
+    <div class="col-md-6">
+      <a href="#"><%= task.creator.username %></a>
+    </div>
+  </div>
+  <div class="row p-t-3">
     <div class="col-md-2">
       Users assigned:
     </div>
