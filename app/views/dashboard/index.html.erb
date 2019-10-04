@@ -52,19 +52,19 @@
 
 <div class="container pt-5">
   <div class="row">
-  <% unless regular_users.empty? %>
+  <% if regular_users.present? %>
     <div class="col-md-6">
       Users:
     </div>
   <% end %>
-  <% unless admin_users.empty? %>
+  <% if admin_users.present? %>
     <div class="col-md-6">
       Admins:
     </div>
   <% end %>
   </div>
   <div class="row">
-    <% unless regular_users.empty? %>
+    <% if regular_users.present? %>
       <div class="col-md-6">
        <ul class="list-group text-center">
          <% regular_users.each do |regular_user|%>
@@ -73,7 +73,7 @@
        </ul>
       </div>
     <% end %>
-    <% unless admin_users.empty? %>
+    <% if admin_users.present? %>
       <div class="col-md-6">
           <ul class="list-group text-center">
             <% admin_users.each do |admin_user|%>
