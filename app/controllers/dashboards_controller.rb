@@ -1,4 +1,6 @@
-class DashboardController < ApplicationController
+# frozen_string_literal: true
+
+class DashboardsController < ApplicationController
   def index
     tasks = Task.all.includes(:users)
     tasks_waiting_list = tasks.select(&:waiting_list?)

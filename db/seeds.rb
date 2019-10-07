@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 PASSWORD = 123456
 
 emails = %w[nikita@mail.com bill@mail.com josh@mail.com kate@mail.com karen@mail.com]
 
 tasks = ['refactoring', 'make a feature', 'rest a while', 'drink coffee', 'attend meeting', 'have a break']
 
-comments = ['Hard task', 'An easy task', 'Good one..', 'Nicely done']
+comments = ['Hard tasks', 'An easy tasks', 'Good one..', 'Nicely done']
 
 attachment_names = %w[ricardo.jpg doc.txt doc.pdf]
 
@@ -27,7 +25,9 @@ end
 
 tasks.each do |task|
   Task.find_or_create_by(
-    title: task
+    title: task,
+    start_date: Time.now,
+    end_date: Time.now
   )
 end
 
@@ -47,3 +47,7 @@ end
 Attachment.all.each do |attachment|
   Task.all.sample.attachments << attachment
 end
+
+admin = User.find(1)
+admin.admin!
+admin.save

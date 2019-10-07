@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center display-4 pb-5">
+      Edit task <span class="text-success"> <%= task.title %></span>
+    </div>
+  </div>
+  <%= render "task_form", task: task, users: users, statuses: statuses %>
+</div>
