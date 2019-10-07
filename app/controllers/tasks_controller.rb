@@ -1,12 +1,14 @@
 class TasksController < ApplicationController
   def new
-    @users = User.all
-    @statuses = Task.statuses
+    task = Task.new
+    users = User.all
+    statuses = Task.statuses
+    render locals: { task: task, users: users, statuses: statuses }
   end
 
   def create
-    @task = Task.new(task_params)
-    if @task.save
+    task = Task.new(task_params)
+    if task.save
       redirect_to root_path
     else
       redirect_to new_task_path
@@ -15,9 +17,9 @@ class TasksController < ApplicationController
 
   def edit
     task = find_task
-    @users = User.all
-    @statuses = Task.statuses
-    render locals: { task: task }
+    users = User.all
+    statuses = Task.statuses
+    render locals: { task: task, users: users, statuses: statuses }
   end
 
   def update
