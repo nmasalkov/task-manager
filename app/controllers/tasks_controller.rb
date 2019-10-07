@@ -5,6 +5,7 @@ class TasksController < ApplicationController
     task = Task.new
     users = User.all
     statuses = Task.statuses
+
     render locals: { task: task,
                      users: users,
                      statuses: statuses }

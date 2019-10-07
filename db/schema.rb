@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2019_10_03_130155) do
     t.datetime "end_date"
   end
 
+<<<<<<< HEAD
   create_table "tasks_users", id: false, force: :cascade do |t|
     t.bigint "task_id", null: false
     t.bigint "user_id", null: false
@@ -63,6 +64,8 @@ ActiveRecord::Schema.define(version: 2019_10_03_130155) do
     t.index ["user_id", "task_id"], name: "index_tasks_users_on_user_id_and_task_id"
   end
 
+=======
+>>>>>>> make major refactoring to catch up with master
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

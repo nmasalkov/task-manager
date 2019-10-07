@@ -15,10 +15,6 @@ class User < ApplicationRecord
     self.role ||= :user
   end
 
-  # def created_tasks
-  #   assignments.where(creator: true)
-  # end
-
   def username
     email.split('@').first
   end
