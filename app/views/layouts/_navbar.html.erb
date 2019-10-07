@@ -5,9 +5,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link active" href="#">Tasks </a>
-      <a class="nav-item nav-link active" href="#">Users</a>
+      <%= link_to "Home", root_path, class: "nav-item nav-link active" %>
+      <%= link_to "Tasks", "#", class: "nav-item nav-link active" %>
+      <%= link_to "Users", "#", class: "nav-item nav-link active"  %>
     </div>
     <div class="navbar-nav ml-auto">
       <% if current_user %>

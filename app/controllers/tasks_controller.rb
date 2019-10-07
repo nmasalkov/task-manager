@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   def new
-    @task_class = Task
     @users = User.all
     @statuses = Task.statuses
   end
@@ -16,7 +15,6 @@ class TasksController < ApplicationController
 
   def edit
     task = find_task
-    @task_class = Task
     @users = User.all
     @statuses = Task.statuses
     render locals: { task: task }
@@ -24,8 +22,7 @@ class TasksController < ApplicationController
 
   def update
     task = find_task
-    task.update(task_params)
-    if task.save
+    if task.update(task_params)
       redirect_to task_path(task.id)
     else
       redirect_to edit_task_path(task.id)

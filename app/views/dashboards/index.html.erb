@@ -47,7 +47,7 @@
   <ul class="list-group">
     <% tasks.each do |task| %>
       <li class="list-group-item">
-        Task <%= link_to task.title, task_path(task.id) %>
+        Task <%= link_to task.title, task_path(task) %>
         assigned to:
         <% task.users.each do |user| %>
           <%= link_to user.username, '#' %>
