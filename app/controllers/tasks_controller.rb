@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
+
   before_action :authenticate_user!, except: :show
 
   def new
     task = Task.new
     users = User.all
     statuses = Task.statuses
-
     render locals: { task: task,
                      users: users,
                      statuses: statuses }
