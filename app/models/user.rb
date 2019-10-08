@@ -9,7 +9,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   accepts_nested_attributes_for :tasks
 
-  scope :created_tasks, -> { assignments where(creator: true) }
+  scope :created_tasks, -> { joins(:assignments).where('assignments.creator =  true') }
 
   def set_default_role
     self.role ||= :user

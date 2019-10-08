@@ -1,16 +1,14 @@
 class TasksController < ApplicationController
 
-  before_action :user_presence, except: :show
+  before_action :authenticate_user!, except: :show
 
   def new
     task = Task.new
     users = User.all
     statuses = Task.statuses
-    is_new = true
     render locals: { task: task,
                      users: users,
-                     statuses: statuses,
-                     is_new: is_new }
+                     statuses: statuses }
   end
 
   def create
@@ -28,12 +26,10 @@ class TasksController < ApplicationController
     users = User.all
     assigned_users_ids = task.assigned_users.map(&:id)
     statuses = Task.statuses
-    is_new = false
     render locals: { task: task,
                      users: users,
                      statuses: statuses,
-                     assigned_users_ids: assigned_users_ids,
-                     is_new: is_new }
+                     assigned_users_ids: assigned_users_ids }
   end
 
   def update

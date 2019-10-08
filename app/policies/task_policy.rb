@@ -1,5 +1,9 @@
 class TaskPolicy < ApplicationPolicy
 
+  def edit?
+    creator? || assigned?
+  end
+
   def creator?
     @user == @record.creator
   end
