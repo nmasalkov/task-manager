@@ -12,11 +12,7 @@
           </div>
           <div class="form-group">
             <%= form.label :users, class: 'control-label' %>
-            <% if task.new_record? %>
-              <%= form.select :user_ids, users.map { |user| [user.username, user.id] }, {}, { class: 'form-control', multiple: true, size: users.length } %>
-            <% else %>
-              <%= form.select :user_ids, options_from_collection_for_select(users, :id, :username, assigned_users_ids), {}, { class: 'form-control', multiple: true, size: users.length } %>
-            <% end %>
+            <%= form.select :user_ids, users.map { |user| [user.username, user.id] }, {}, { class: 'form-control', multiple: true, size: users.length } %>
           </div>
           <div class="form-group">
             <%= form.label :start_date, class: 'control-label' %>

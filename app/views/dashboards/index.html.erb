@@ -1,4 +1,4 @@
-e<div class="container">
+<div class="container">
   <div class="row pb-3">
     <div class="col-md-4">
       Waiting list:
@@ -51,13 +51,13 @@ e<div class="container">
       <li class="list-group-item">
         Task <%= link_to task.title, task_path(task) %>
         Assigned to:
-        <% task.assigned_users.each do |user| %>
+        <% task.users.each do |user| %>
           <%= link_to user.username, '#' %>
         <% end %>
         Created by:
-        <%= link_to task.creator.username, '#' %>
+        <%= link_to task.creator_name, '#' %>
         <% if task.start_date.present? %>
-          Start time: <span class="text-success"> <%=task.normal_start_date %> </span>
+          Start time: <span class="text-success"> <%= task.normal_start_date %> </span>
         <% end %>
         <% if task.end_date.present? %>
           End time: <span class="text-success"><%= task.normal_end_date %> </span>

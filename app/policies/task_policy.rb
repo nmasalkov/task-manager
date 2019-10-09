@@ -9,6 +9,6 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def assigned?
-    @record.assigned_users.include?(@user)
+    @record.users.include?(@user)
   end
 end
