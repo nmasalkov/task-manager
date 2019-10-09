@@ -14,8 +14,10 @@ gem 'sass-rails', '~> 5.0'
 # Custom gems
 gem 'webpacker'
 gem 'devise'
-gem "pundit"
-
+gem 'pundit'
+gem 'dry-struct'
+gem 'dry-types'
+gem 'virtus'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
