@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_130155) do
+ActiveRecord::Schema.define(version: 2019_10_09_111218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assignments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "task_id"
-    t.boolean "creator", default: false
-    t.boolean "assigned", default: true
-    t.index ["task_id"], name: "index_assignments_on_task_id"
-    t.index ["user_id"], name: "index_assignments_on_user_id"
-  end
 
   create_table "attachments", force: :cascade do |t|
     t.bigint "user_id"
@@ -56,7 +47,6 @@ ActiveRecord::Schema.define(version: 2019_10_03_130155) do
     t.datetime "end_date"
   end
 
-<<<<<<< HEAD
   create_table "tasks_users", id: false, force: :cascade do |t|
     t.bigint "task_id", null: false
     t.bigint "user_id", null: false
@@ -64,8 +54,6 @@ ActiveRecord::Schema.define(version: 2019_10_03_130155) do
     t.index ["user_id", "task_id"], name: "index_tasks_users_on_user_id_and_task_id"
   end
 
-=======
->>>>>>> make major refactoring to catch up with master
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
