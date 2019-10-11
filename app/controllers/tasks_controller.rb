@@ -2,34 +2,36 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: :show
 
   def new
-    @new_task_form = Task::NewTaskForm.new
+    @task_form = TaskForm.new(current_user)
+    users = User.all
+    statuses = Task.statuses
+    render locals: { users: users, statuses: statuses }
   end
 
   def create
-    @new_task_form = NewTaskForm.new(task_params)
-    if @new_task_form.save
-      redirect_to redirect_to root_path
+    @task_form = TaskForm.new(current_user, task_params)
+    if @task_form.save
+      redirect_to root_path
     else
       redirect_to new_task_path
     end
   end
 
   def edit
-    task = find_task
+    @task = find_task
+    @task_form = TaskForm.new(current_user, {}, @task)
     users = User.all
     statuses = Task.statuses
-    render locals: { task: task,
-                     users: users,
-                     statuses: statuses }
+    render locals: { users: users, statuses: statuses }
   end
 
   def update
-    task = find_task
-
-    if task.update(task_params)
-      redirect_to task_path(task.id)
+    @task = find_task
+    @task_form = TaskForm.new(current_user, task_params, @task)
+    if @task_form.save
+      redirect_to task_path(@task)
     else
-      redirect_to edit_task_path(task.id)
+      redirect_to edit_task_path(@task)
     end
   end
 
