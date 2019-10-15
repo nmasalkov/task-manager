@@ -4,6 +4,7 @@ class TaskForm
 
   attr_accessor :task
 
+  attribute :id, Integer
   attribute :creator_id, Integer
   attribute :creator_name, String
   attribute :status, String
@@ -14,15 +15,12 @@ class TaskForm
   attribute :user_ids, Array(Integer)
 
   def initialize(current_user, params = {}, task = nil)
+    binding.pry
     @current_user = current_user
-    if task.present?
-      @params = task.attributes
-      @params.merge!(params)
-      super(@params)
-    else
-      @params = params
-      super(@params)
-    end
+    params.merge!(user_ids: task.user_ids)
+    params.merge!(task&.attributes.to_h)
+    binding.pry
+    super(params)
     @task = task
   end
 
@@ -30,16 +28,17 @@ class TaskForm
     ActiveModel::Name.new(self, nil, Task.to_s)
   end
 
-  def user_ids
-    if !new_record?
-      @task.user_ids
-    else
-      Task.new.user_ids
-    end
-  end
+  # def user_ids
+  #   binding.pry
+  #   if persisted?
+  #     @task.user_ids
+  #   else
+  #     Task.new.user_ids
+  #   end
+  # end
 
-  def new_record?
-    @task.nil?
+  def persisted?
+    id.present?
   end
 
   def creator
@@ -47,7 +46,7 @@ class TaskForm
   end
 
   def save
-    if new_record?
+    if !persisted?
       create_task
     else
       update_task
@@ -55,11 +54,11 @@ class TaskForm
   end
 
   def update_task
-    @task.update!(@params)
+    @task.update!(attributes)
   end
 
   def create_task
-    @task = Task.create!(@params)
+    @task = Task.create!(attributes)
     @task.set_creator(@current_user)
   end
 end
