@@ -4,11 +4,13 @@
       Task: <span class="text-success"> <%= task.title %></span>
     </div>
   </div>
-  <div class="row">
-    <div class=" col-md-12 text-center display-2" >
-      <%= link_to "Edit this task", edit_task_path(task), class: "btn btn-primary" %>
+  <% if policy(task).edit? %>
+    <div class="row">
+      <div class=" col-md-12 text-center display-2" >
+        <%= link_to "Edit this task", edit_task_path(task.id), class: "btn btn-primary" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <div class="container">
@@ -36,12 +38,20 @@
       <%= task.status %>
     </div>
   </div>
+    <div class="row pt-3">
+      <div class="col-md-2">
+        Task creator:
+      </div>
+      <div class="col-md-6">
+        <%= link_to task.creator_name, "#" %>
+      </div>
+    </div>
   <div class="row pt-3">
     <div class="col-md-2">
       Users assigned:
     </div>
     <div class="col-md-6">
-      <% users.each do |user|  %>
+      <% task.users.each do |user|  %>
         <span class="pr-2"> <%= link_to user.username, "#" %> </span>
       <% end %>
     </div>

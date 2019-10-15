@@ -1,13 +1,18 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!, except: :show
+
   def new
     task = Task.new
     users = User.all
     statuses = Task.statuses
-    render locals: { task: task, users: users, statuses: statuses }
+    render locals: { task: task,
+                     users: users,
+                     statuses: statuses }
   end
 
   def create
     task = Task.new(task_params)
+    task.set_creator(current_user)
     if task.save
       redirect_to root_path
     else
@@ -19,11 +24,14 @@ class TasksController < ApplicationController
     task = find_task
     users = User.all
     statuses = Task.statuses
-    render locals: { task: task, users: users, statuses: statuses }
+    render locals: { task: task,
+                     users: users,
+                     statuses: statuses }
   end
 
   def update
     task = find_task
+
     if task.update(task_params)
       redirect_to task_path(task.id)
     else

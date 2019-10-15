@@ -33,6 +33,7 @@ end
 
 Task.all.each do |task|
   task.users << User.all.sample(2)
+  task.set_creator(User.all.sample)
   task.status = Task.statuses.values.sample
   task.save
 end
