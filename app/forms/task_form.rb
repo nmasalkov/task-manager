@@ -15,30 +15,19 @@ class TaskForm
   attribute :user_ids, Array(Integer)
 
   def initialize(current_user, params = {}, task = nil)
-    binding.pry
     @current_user = current_user
-    params.merge!(user_ids: task.user_ids)
-    params.merge!(task&.attributes.to_h)
-    binding.pry
-    super(params)
     @task = task
+    params.merge!(user_ids: task&.user_ids) unless params[:user_ids].present?
+    safe_merge(params, task)
+    super(params)
   end
 
   def model_name
     ActiveModel::Name.new(self, nil, Task.to_s)
   end
 
-  # def user_ids
-  #   binding.pry
-  #   if persisted?
-  #     @task.user_ids
-  #   else
-  #     Task.new.user_ids
-  #   end
-  # end
-
   def persisted?
-    id.present?
+    !@task.nil?
   end
 
   def creator
@@ -60,5 +49,11 @@ class TaskForm
   def create_task
     @task = Task.create!(attributes)
     @task.set_creator(@current_user)
+  end
+
+  private
+
+  def safe_merge(params, values)
+    params.merge!(values&.attributes.to_h.reject { |key| params.keys.include? key })
   end
 end
