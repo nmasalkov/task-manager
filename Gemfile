@@ -16,7 +16,6 @@ gem 'webpacker'
 gem 'devise'
 gem 'pundit'
 gem 'dry-struct'
-gem 'dry-types'
 gem 'dry-validation'
 gem 'virtus'
 # Use Uglifier as compressor for JavaScript assets
