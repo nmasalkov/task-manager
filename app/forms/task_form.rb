@@ -1,6 +1,9 @@
 class TaskForm
   include ActiveModel::Model
+  include ActiveModel::Dirty
   include Virtus
+
+
 
   attr_accessor :task
 
@@ -43,6 +46,7 @@ class TaskForm
   end
 
   def update_task
+    send_mail
     @task.update!(attributes)
   end
 
@@ -52,6 +56,20 @@ class TaskForm
   end
 
   private
+
+  def send_mail
+
+    new_assigned_users = attributes[:user_ids] - @task.user_ids
+    new_assigned_users-=['']
+    #unassigned_users = @task.user_ids - user_ids
+    if new_assigned_users.any?
+      new_assigned_users.each do |user_id|
+        user = User.find(user_id).username
+        binding.pry
+        TaskMailer.new_assignment_task_email(@task.title, user).deliver_now
+      end
+    end
+  end
 
   def safe_merge(params, values)
     params.merge!(values&.attributes.to_h.reject { |key| params.keys.include? key })
