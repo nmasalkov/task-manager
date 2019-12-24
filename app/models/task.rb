@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Task < ApplicationRecord
   include ActiveModel::Dirty
 
@@ -29,7 +31,7 @@ class Task < ApplicationRecord
   def set_creator(user)
     self.creator_id = user.id
     self.creator_name = user.username
-    self.save
+    save
   end
 
   private

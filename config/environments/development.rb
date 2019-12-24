@@ -37,16 +37,17 @@ Rails.application.configure do
   # }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'nikita.duplan@gmail.com' }
-  config.action_mailer.default_url_options = { :host => 'lvh.me:3000', protocol: 'http' }
+  config.action_mailer.default_options = { from: 'nikita.duplan@gmail.com' }
+  config.action_mailer.default_url_options = { host: 'lvh.me:3000', protocol: 'http' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
-      port:                 587,
-      user_name:            'nikita.duplan@gmail.com',
-      password:             'worldof20',
-      authentication:       'plain' }
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'nikita.duplan@gmail.com',
+    password: 'worldof20',
+    authentication: 'plain'
+  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local

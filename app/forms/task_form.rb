@@ -1,9 +1,8 @@
+# frozen_string_literal: true
+
 class TaskForm
   include ActiveModel::Model
-  include ActiveModel::Dirty
   include Virtus
-
-
 
   attr_accessor :task
 
@@ -58,15 +57,24 @@ class TaskForm
   private
 
   def send_mail
-
     new_assigned_users = attributes[:user_ids] - @task.user_ids
-    new_assigned_users-=['']
-    #unassigned_users = @task.user_ids - user_ids
+    new_assigned_users -= ['']
+    unassigned_users = @task.user_ids - user_ids
+    unassigned_users -= ['']
+
     if new_assigned_users.any?
       new_assigned_users.each do |user_id|
         user = User.find(user_id).username
-        binding.pry
-        TaskMailer.new_assignment_task_email(@task.title, user).deliver_now
+        new_mail = TaskMailer.delay.new_assignment_task_email(@task.title, user)
+        new_mail.delay(queue: 'assignment_mail', priority: 20)
+      end
+    end
+
+    if unassigned_users.any?
+      unassigned_users.each do |user_id|
+        user = User.find(user_id).username
+        new_mail = TaskMailer.delay.new_unassignment_task_email(@task.title, user)
+        new_mail.delay(queue: 'unassignment_mail', priority: 10)
       end
     end
   end

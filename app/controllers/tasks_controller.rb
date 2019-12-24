@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :authenticate_user!, except: :show
   before_action :find_task, only: %i[edit update show]
@@ -33,6 +35,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    Delayed::Job.enqueue TaskRenamerJob.new
     @users = @task.users
   end
 
@@ -40,11 +43,11 @@ class TasksController < ApplicationController
 
   def task_params
     task_params = params.require(:task).permit(:title,
-                                                :description,
-                                                :status,
-                                                :start_date,
-                                                :end_date,
-                                                user_ids: [])
+                                               :description,
+                                               :status,
+                                               :start_date,
+                                               :end_date,
+                                               user_ids: [])
 
     NormalizeDatesService.new(task_params).normalize_date_attr
   end

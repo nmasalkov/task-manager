@@ -1,4 +1,6 @@
-PASSWORD = 123456
+# frozen_string_literal: true
+
+PASSWORD = 123_456
 
 emails = %w[nikita@mail.com bill@mail.com josh@mail.com kate@mail.com karen@mail.com]
 

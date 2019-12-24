@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NormalizeDatesService
   def initialize(task_params)
     @task_params = task_params
